@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+    <!-- Background -->
+    <rect width="200" height="200" rx="40" fill="#0e100f" />
+    <!-- Green accent ring -->
+    <rect width="200" height="200" rx="40" fill="none" stroke="#e8941a" stroke-width="3"
+        opacity="0.4" />
+    <!-- "RW" text -->
+    <text
+        x="100"
+        y="130"
+        font-family="'Space Grotesk', Arial, sans-serif"
+        font-weight="900"
+        font-size="88"
+        fill="#ededed"
+        text-anchor="middle"
+        letter-spacing="-4"
+    >RW</text>
+    <!-- Accent dot -->
+    <circle cx="155" cy="148" r="8" fill="#e8941a" />
+</svg>
