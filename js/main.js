@@ -19,60 +19,30 @@ let scrollVelocity = 0;
 const body = document.body;
 
 // ============================================================
-// LENIS SMOOTH SCROLL (Optimized for Railway)
+// LENIS SMOOTH SCROLL
 // ============================================================
 function initLenis() {
   if (typeof Lenis === 'undefined') return;
 
-  // Detect if we're in a low-performance environment
-  const isLowPerf = navigator.hardwareConcurrency <= 2;
-
   lenis = new Lenis({
-    duration: isLowPerf ? 1.0 : 1.2, // Faster for smoother response
+    duration: 1.4,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smooth: true,
     smoothTouch: false,
     touchMultiplier: 1.6,
-    infinite: false, // Disable infinite mode for better performance
-    syncTouch: false, // Disable for smoother desktop experience
   });
-
-  // Use requestAnimationFrame directly for better sync
-  let rafId = null;
-  let lastTime = 0;
-
-  function raf(time) {
-    if (!lastTime) lastTime = time;
-    const delta = time - lastTime;
-    lastTime = time;
-
-    // Limit delta to prevent jumps after tab inactivity
-    if (delta < 100) {
-      lenis.raf(delta);
-    }
-
-    rafId = requestAnimationFrame(raf);
-  }
 
   lenis.on('scroll', ({ velocity }) => {
     scrollVelocity = velocity;
     ScrollTrigger.update();
   });
 
-  // Start RAF loop
-  rafId = requestAnimationFrame(raf);
-
-  // GSAP ticker for ScrollTrigger sync
+  // Standard GSAP ticker sync
   gsap.ticker.add((time) => {
-    // GSAP handles its own timing, just notify Lenis
+    lenis.raf(time * 1000);
   });
 
-  // Optimize GSAP ticker
   gsap.ticker.lagSmoothing(0);
-  gsap.ticker.sleep(); // Don't use GSAP ticker for RAF, use our optimized one
-
-  // Store RAF id for cleanup
-  lenis._rafId = rafId;
 }
 
 // ============================================================
