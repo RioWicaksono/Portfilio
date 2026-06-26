@@ -1,10 +1,11 @@
 /* ============================================
-   RW PORTFOLIO — SERVICE WORKER v3
+   RW PORTFOLIO — SERVICE WORKER v5
    Cache-first with network fallback
    Update notification support
+   Performance optimized
    ============================================ */
 
-const CACHE = 'rw-v4';
+const CACHE = 'rw-v5';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -14,6 +15,7 @@ const PRECACHE = [
   '/icons/favicon.svg',
   '/icons/icon-192.svg',
   '/icons/icon-512.svg',
+  '/icons/og-image.svg',
 ];
 
 // Install — cache essential assets
@@ -36,34 +38,43 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-// Fetch — cache-first, network fallback
+// Fetch — optimized cache strategy
 self.addEventListener('fetch', (e) => {
+  // Only handle GET requests
   if (e.request.method !== 'GET') return;
 
-  // Skip cross-origin CDN requests from cache strategy
   const url = new URL(e.request.url);
-  if (url.origin !== self.location.origin) {
-    e.respondWith(fetch(e.request));
-    return;
-  }
+
+  // Skip non-local requests
+  if (url.origin !== self.location.origin) return;
 
   e.respondWith(
     caches.match(e.request).then((cached) => {
+      // Return cached version if available (cache-first for static)
       if (cached) return cached;
 
+      // Otherwise fetch from network
       return fetch(e.request).then((response) => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
+        // Don't cache bad responses
+        if (!response || response.status !== 200) {
           return response;
         }
-        const clone = response.clone();
-        caches.open(CACHE).then((cache) => cache.put(e.request, clone));
+
+        // Cache successful responses (except for HTML to ensure freshness)
+        if (!url.pathname.endsWith('.html')) {
+          const clone = response.clone();
+          caches.open(CACHE).then((cache) => {
+            cache.put(e.request, clone);
+          });
+        }
+
         return response;
+      }).catch(() => {
+        // Offline fallback
+        if (url.pathname === '/' || url.pathname.endsWith('.html')) {
+          return caches.match('/index.html');
+        }
       });
-    }).catch(() => {
-      // Offline fallback
-      if (e.request.destination === 'document') {
-        return caches.match('/index.html');
-      }
     })
   );
 });
