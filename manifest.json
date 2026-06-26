@@ -6,8 +6,8 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0c0b0a",
-  "theme_color": "#0c0b0a",
+  "background_color": "#0e100f",
+  "theme_color": "#0e100f",
   "categories": ["portfolio", "technology"],
   "icons": [
     {

@@ -1,5 +1,5 @@
 # Static Asset Caching Headers for Railway
-# Optimized for performance and smooth scrolling
+# Optimized for performance
 
 # HTML - No cache (always fresh)
 /index.html
@@ -9,11 +9,11 @@
 # Static Assets - Long cache with immutable
 /css/*
   Cache-Control: public, max-age=31536000, immutable
-  Content-Type: text/css
+  Content-Type: text/css; charset=utf-8
 
 /js/*
   Cache-Control: public, max-age=31536000, immutable
-  Content-Type: application/javascript
+  Content-Type: application/javascript; charset=utf-8
 
 /icons/*
   Cache-Control: public, max-age=31536000, immutable
@@ -23,16 +23,7 @@
   Cache-Control: public, max-age=86400
   Content-Type: application/manifest+json
 
-# Google Fonts - Already cached by Google, but add headers
-/fonts.gstatic.com/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# CDN Assets (GSAP, Lenis) - Long cache
-/cdn.jsdelivr.net/*
-  Cache-Control: public, max-age=31536000, immutable
-
 # Security Headers
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
-  Referrer-Policy: strict-origin-when-cross-origin

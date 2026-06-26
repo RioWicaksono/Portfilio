@@ -54,8 +54,8 @@
     <rect x="0" y="160" width="200" height="2" fill="#e8941a" opacity="0.6"/>
 
     <!-- Tagline -->
-    <text x="0" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="rgba(240,235,226,0.6)" letter-spacing="0.01em">System Deployment • SIT/UAT • BRD Analysis</text>
-    <text x="0" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="rgba(240,235,226,0.6)" letter-spacing="0.01em">Digital Transformation • Insurance Tech</text>
+    <text x="0" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="rgba(240,235,226,0.6)" letter-spacing="0.01em">System Deployment | SIT/UAT | BRD Analysis</text>
+    <text x="0" y="245" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="rgba(240,235,226,0.6)" letter-spacing="0.01em">Digital Transformation | Insurance Tech</text>
   </g>
 
   <!-- Stats Badges -->
