@@ -13,17 +13,43 @@
   <meta property="og:title" content="Rio Wicaksono | IT Consultant">
   <meta property="og:description" content="IT Consultant with 5+ years experience delivering tailored technology solutions across Southeast Asia — system deployment, SIT/UAT, BRD analysis, and digital transformation.">
   <meta property="og:url" content="https://riowicaksono.github.io">
-  <meta property="og:image" content="https://riowicaksono.github.io/icons/og-image.png">
+  <meta property="og:image" content="https://riowicaksono.github.io/icons/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/svg+xml">
   <meta property="og:locale" content="en_US">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rio Wicaksono | IT Consultant">
   <meta name="twitter:description" content="IT Consultant with 5+ years experience — system deployment, SIT/UAT, BRD analysis.">
-  <meta name="twitter:image" content="https://riowicaksono.github.io/icons/og-image.png">
+  <meta name="twitter:image" content="https://riowicaksono.github.io/icons/og-image.svg">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
   <link rel="icon" type="image/svg+xml" sizes="192x192" href="icons/icon-192.svg">
   <link rel="apple-touch-icon" href="icons/icon-192.svg">
+  <!-- Preload critical fonts for LCP & CLS prevention -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_w.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- DNS Prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Critical CSS inlined to prevent render-blocking -->
+  <style>
+    :root{--bg:#0c0b0a;--text:#f0ebe2;--accent:#e8941a;--nav-h:72px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px;overflow-x:hidden}
+    body{background-color:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.6;overflow-x:hidden;min-height:100vh}
+    /* Reserve loader space to prevent CLS */
+    #loader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+    .skip-link{position:absolute;top:-100%;left:16px;z-index:10000;padding:8px 16px;background:var(--accent);color:var(--bg);font-weight:600;border-radius:4px;transition:top .2s}
+    .skip-link:focus{top:16px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+
+  <!-- Google Fonts with font-display: swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -46,11 +72,15 @@
   }
   </script>
 <body>
-  <!-- Loader -->
-  <div id="loader" class="loader">
+  <!-- Skip to main content (Accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Loader — reserved space prevents CLS -->
+  <div id="loader" class="loader" role="status" aria-label="Page loading" aria-live="polite">
     <div class="loader__inner">
       <span class="loader__text">R<span class="accent">W</span></span>
       <div class="loader__bar"><div class="loader__fill"></div></div>
+      <progress id="loader-progress" class="sr-only" value="0" max="100"></progress>
     </div>
   </div>
 
@@ -59,48 +89,48 @@
   <div class="cursor-follower" id="cursor-follower"></div>
 
   <!-- Navigation -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__logo">
-      <a href="#hero">RW<span class="accent">.</span></a>
+      <a href="#hero" aria-label="Rio Wicaksono - Back to top">RW<span class="accent">.</span></a>
     </div>
-    <div class="nav__links" id="navLinks">
-      <a href="#hero" class="nav__link active" data-section="hero">Home</a>
-      <a href="#about" class="nav__link" data-section="about">About</a>
-      <a href="#services" class="nav__link" data-section="services">Services</a>
-      <a href="#skills" class="nav__link" data-section="skills">Skills</a>
-      <a href="#experience" class="nav__link" data-section="experience">Experience</a>
-      <a href="#projects" class="nav__link" data-section="projects">Projects</a>
-      <a href="#contact" class="nav__link" data-section="contact">Contact</a>
+    <div class="nav__links" id="navLinks" role="menubar">
+      <a href="#hero" class="nav__link active" data-section="hero" role="menuitem" aria-current="page">Home</a>
+      <a href="#about" class="nav__link" data-section="about" role="menuitem">About</a>
+      <a href="#services" class="nav__link" data-section="services" role="menuitem">Services</a>
+      <a href="#skills" class="nav__link" data-section="skills" role="menuitem">Skills</a>
+      <a href="#experience" class="nav__link" data-section="experience" role="menuitem">Experience</a>
+      <a href="#projects" class="nav__link" data-section="projects" role="menuitem">Projects</a>
+      <a href="#contact" class="nav__link" data-section="contact" role="menuitem">Contact</a>
     </div>
-    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu__links">
-      <a href="#hero" class="mobile-menu__link" data-section="hero">Home</a>
-      <a href="#about" class="mobile-menu__link" data-section="about">About</a>
-      <a href="#services" class="mobile-menu__link" data-section="services">Services</a>
-      <a href="#skills" class="mobile-menu__link" data-section="skills">Skills</a>
-      <a href="#experience" class="mobile-menu__link" data-section="experience">Experience</a>
-      <a href="#projects" class="mobile-menu__link" data-section="projects">Projects</a>
-      <a href="#contact" class="mobile-menu__link" data-section="contact">Contact</a>
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="mobile-menu__links" role="menu">
+      <a href="#hero" class="mobile-menu__link" data-section="hero" role="menuitem">Home</a>
+      <a href="#about" class="mobile-menu__link" data-section="about" role="menuitem">About</a>
+      <a href="#services" class="mobile-menu__link" data-section="services" role="menuitem">Services</a>
+      <a href="#skills" class="mobile-menu__link" data-section="skills" role="menuitem">Skills</a>
+      <a href="#experience" class="mobile-menu__link" data-section="experience" role="menuitem">Experience</a>
+      <a href="#projects" class="mobile-menu__link" data-section="projects" role="menuitem">Projects</a>
+      <a href="#contact" class="mobile-menu__link" data-section="contact" role="menuitem">Contact</a>
     </div>
   </div>
 
   <!-- Scroll Progress -->
-  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
   <!-- Main Content -->
-  <main id="smooth-wrapper">
+  <main id="main-content" tabindex="-1">
     <div id="smooth-content">
 
       <!-- Hero Section -->
-      <section class="section hero" id="hero">
+      <section class="section hero" id="hero" aria-labelledby="hero-title">
         <div class="hero__bg">
           <div class="hero__gradient"></div>
           <div class="hero__grid"></div>
@@ -112,7 +142,7 @@
               <span class="hero__badge-dot"></span>
               Available for new opportunities
             </div>
-            <h1 class="hero__title" data-animate="split-text">
+            <h1 class="hero__title" id="hero-title" data-animate="split-text">
               <span class="hero__hello">Hello.</span>
               <span class="hero__name">I'm <span class="text-gradient">Rio Wicaksono</span></span>
             </h1>
@@ -512,9 +542,9 @@
 
             <div class="timeline__item" data-animate="fade-up">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">MAY 2023 - PRESENT</div>
+              <div class="timeline__date">2023 - PRESENT</div>
               <div class="timeline__card">
-                <h3 class="timeline__role">Information Technology Consultant</h3>
+                <h3 class="timeline__role">Senior IT Implementation Lead | Regional Systems Analyst | InsurTech Specialist</h3>
                 <h4 class="timeline__company">CARE TECHNOLOGIES</h4>
                 <p class="timeline__desc">
                   Analyze and capture client requests using BRD, plan deployments for SIT, UAT, and Production servers, and prepare resources like databases and modules. Additional responsibilities include database backup/restore, client training, coordinating with consultants and developers for QA and version upgrades, and leading client meetings to discuss features and timelines.
@@ -532,7 +562,7 @@
 
             <div class="timeline__item" data-animate="fade-up">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">MAY 2020 - MAY 2022</div>
+              <div class="timeline__date">2022 - 2023</div>
               <div class="timeline__card">
                 <h3 class="timeline__role">Contract IT Consultant</h3>
                 <h4 class="timeline__company">CARE TECHNOLOGIES</h4>
@@ -551,7 +581,7 @@
 
             <div class="timeline__item" data-animate="fade-up">
               <div class="timeline__dot"></div>
-              <div class="timeline__date">PREVIOUS</div>
+              <div class="timeline__date">2020 - 2022</div>
               <div class="timeline__card">
                 <h3 class="timeline__role">General Affairs</h3>
                 <h4 class="timeline__company">PT. ABSOLUTE SERVICES</h4>
@@ -828,7 +858,7 @@
       </section>
 
       <!-- Footer -->
-      <footer class="footer">
+      <footer class="footer" role="contentinfo">
         <div class="container footer__content">
           <p>Designed and built by <span class="text-gradient">Rio Wicaksono</span></p>
           <p>&copy; 2026. All Rights Reserved.</p>
@@ -839,9 +869,15 @@
   </main>
 
   <!-- Back to Top -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  <button class="back-to-top" id="backToTop" aria-label="Scroll to top of page" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
+
+  <!-- PWA Update Notification Banner -->
+  <div id="update-banner" class="update-banner" role="alert" aria-live="polite" hidden>
+    <p>A new version of this site is available.</p>
+    <button id="update-btn" class="btn btn--primary btn--sm">Update Now</button>
+  </div>
 
   <!-- GSAP CDN -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
@@ -854,14 +890,40 @@
   <!-- Main JS -->
   <script src="js/main.js"></script>
 
-  <!-- Service Worker Registration -->
+  <!-- Service Worker Registration with Update Handling -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      let refreshing = false;
+      const updateBanner = document.getElementById('update-banner');
+      const updateBtn = document.getElementById('update-btn');
+
+      // Listen for service worker updates
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        globalThis.location.reload();
+      });
+
+      globalThis.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('SW registered:', reg.scope))
+          .then(reg => {
+            console.log('SW registered:', reg.scope);
+            // Check for updates periodically
+            setInterval(() => reg.update(), 60 * 60 * 1000); // Every hour
+          })
           .catch(err => console.log('SW registration failed:', err));
       });
+
+      // Show update banner when new version is available
+      if (updateBtn) {
+        updateBtn.addEventListener('click', () => {
+          navigator.serviceWorker.getRegistration().then(reg => {
+            if (reg && reg.waiting) {
+              reg.waiting.postMessage('skipWaiting');
+            }
+          });
+        });
+      }
     }
   </script>
 </body>

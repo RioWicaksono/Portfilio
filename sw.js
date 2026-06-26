@@ -1,9 +1,10 @@
 /* ============================================
-   RW PORTFOLIO — SERVICE WORKER v2
+   RW PORTFOLIO — SERVICE WORKER v3
    Cache-first with network fallback
+   Update notification support
    ============================================ */
 
-const CACHE = 'rw-v3';
+const CACHE = 'rw-v4';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -65,4 +66,11 @@ self.addEventListener('fetch', (e) => {
       }
     })
   );
+});
+
+// Handle skipWaiting message for PWA updates
+self.addEventListener('message', (e) => {
+  if (e.data === 'skipWaiting') {
+    self.skipWaiting();
+  }
 });
