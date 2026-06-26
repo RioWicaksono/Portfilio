@@ -658,29 +658,6 @@ function initAnimations() {
 }
 
 // ============================================================
-// ANIMATED TAB TITLE
-// ============================================================
-function initTabTitle() {
-  const frames = [
-    'Rio Wicaksono | IT Consultant',
-    '⚡ Available for Work',
-    '🚀 5+ Years Experience',
-    '🌏 APAC IT Consultant',
-    '💼 Open for Opportunities',
-  ];
-  let i = 0;
-  setInterval(() => {
-    i = (i + 1) % frames.length;
-    document.title = frames[i];
-  }, 2500);
-
-  // Reset to original when tab is visible again
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) document.title = frames[0];
-  });
-}
-
-// ============================================================
 // BOOT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -689,5 +666,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initNav();
   initLoader();
-  initTabTitle();
 });
